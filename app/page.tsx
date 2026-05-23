@@ -1,35 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
+import { videosByLetter, alphabet } from "@/lib/videos";
 
-const videos = [
-  { title: "Anti Queens Live New Years at Bovine Sex Club", id: "iwNZy5kCGHQ" },
-  { title: "Ladders Anti Queens at Bovine Sex Club", id: "XtgaNu8tI-c" },
-  { title: "Anti Queens New Years Eve Bovine Sex Club", id: "g0TTKJcIYaE" },
-  { title: "Rock and Roll Canada Video Lee Aaron", id: "Hxr0FwKzoFc" },
-  { title: "Rock and Roll Canada Video Lee Aaron", id: "l71ax_eK6qA" },
-  { title: "Rock and Roll Canada Video Lee Aaron", id: "LgcaaPq_EnE" },
-  { title: "Rock and Roll Canada Video Lee Aaron", id: "d-MFB1QF5gM" },
-  { title: "Rock and Roll Canada Video Lee Aaron", id: "6d_vRTMyjlg" },
-  { title: "Rock and Roll Canada Video Lee Aaron", id: "23YP7OOXhkY" },
-  { title: "Rock and Roll Canada Video Lee Aaron", id: "XdYTItXlxl4" },
-  { title: "Rock and Roll Canada Video Lee Aaron", id: "kM66DK9woiI" },
-  { title: "Rock and Roll Canada Video Lee Aaron", id: "9APHwVrewps" },
-  { title: "Rock and Roll Canada Video Lee Aaron", id: "NXE3bjLAuCw" },
-  { title: "Rock and Roll Canada Video Lee Aaron", id: "79p3fIkigB0" },
-  { title: "Rock and Roll Canada Video Lee Aaron", id: "G4MLq5xx6P0" },
-  { title: "Rock and Roll Canada Video Lee Aaron", id: "_tuURDV2iD4" },
-  { title: "Rock and Roll Canada Video Lee Aaron", id: "KP17TeLVvUQ" },
-  { title: "Rock and Roll Canada Video Lee Aaron", id: "8C2JSiJzd_c" },
-  { title: "Rock and Roll Canada Video Lee Aaron", id: "K3eeyjEkDKA" },
-  { title: "Rock and Roll Canada Video Lee Aaron", id: "L-h3KMo0VrU" },
-  { title: "Rock and Roll Canada Video Lee Aaron", id: "q3-96xbPyHw" },
-  { title: "Rock and Roll Canada Video Lee Aaron", id: "YUmkSHzB6y8" },
-  { title: "Rock and Roll Canada Video Lee Aaron", id: "iq91kIxgBrs" },
-  { title: "Rock and Roll Canada Video Lee Aaron", id: "sEVBXvB_liY" },
-  { title: "Rock and Roll Canada Video Lee Aaron", id: "1tbHZIj3gXA" },
-];
-
-const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+const videos = videosByLetter.a;
 
 function VideoEmbed({ title, videoId }: { title: string; videoId: string }) {
   return (
@@ -106,7 +79,7 @@ export default function Home() {
 
         <div className="space-y-8">
           {videos.map((video, index) => (
-            <div key={video.id}>
+            <div key={`${video.id}-${index}`}>
               <VideoEmbed title={video.title} videoId={video.id} />
               {(index + 1) % 4 === 0 && index < videos.length - 1 && (
                 <Image

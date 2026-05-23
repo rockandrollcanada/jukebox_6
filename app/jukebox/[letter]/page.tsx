@@ -1,16 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-
-const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-
-// This would be replaced with actual video data per letter
-const getVideosForLetter = (letter: string) => {
-  // Placeholder - in a real app, you'd fetch videos that start with this letter
-  return [
-    { title: `Sample Video for ${letter.toUpperCase()}`, id: "dQw4w9WgXcQ" },
-  ];
-};
+import { getVideosForLetter, alphabet } from "@/lib/videos";
 
 export function generateStaticParams() {
   return alphabet.map((letter) => ({
@@ -18,11 +9,16 @@ export function generateStaticParams() {
   }));
 }
 
-export function generateMetadata({ params }: { params: Promise<{ letter: string }> }) {
-  return params.then(({ letter }) => ({
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ letter: string }>;
+}) {
+  const { letter } = await params;
+  return {
     title: `Jukebox ${letter.toUpperCase()} | Rock and Roll Canada`,
     description: `Canadian rock videos starting with ${letter.toUpperCase()}`,
-  }));
+  };
 }
 
 function Footer() {
@@ -115,19 +111,36 @@ export default async function JukeboxPage({
           ))}
         </nav>
 
-        <div className="space-y-8">
-          {videos.map((video) => (
-            <div key={video.id} className="aspect-video w-full">
-              <iframe
-                title={video.title}
-                src={`https://www.youtube.com/embed/${video.id}`}
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="h-full w-full rounded-lg"
-              />
-            </div>
-          ))}
-        </div>
+        {videos.length === 0 ? (
+          <p className="text-center text-gray-500">
+            No videos available for this letter yet.
+          </p>
+        ) : (
+          <div className="space-y-8">
+            {videos.map((video, index) => (
+              <div key={`${video.id}-${index}`}>
+                <div className="aspect-video w-full">
+                  <iframe
+                    title={video.title}
+                    src={`https://www.youtube.com/embed/${video.id}`}
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="h-full w-full rounded-lg"
+                  />
+                </div>
+                {(index + 1) % 4 === 0 && index < videos.length - 1 && (
+                  <Image
+                    src="/images/jukebox-part.png"
+                    alt="Rock and Roll Canada Jukebox divider"
+                    width={800}
+                    height={50}
+                    className="mx-auto my-8 w-full"
+                  />
+                )}
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
       <Footer />
