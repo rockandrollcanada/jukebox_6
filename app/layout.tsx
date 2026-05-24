@@ -21,7 +21,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="bg-background">
-      <body className="antialiased">{children}</body>
+      <body className="flex min-h-screen w-full flex-col antialiased">
+        {children}
+      </body>
     </html>
   );
 }

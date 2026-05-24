@@ -39,8 +39,8 @@ export default async function JukeboxPage({
   const videos = getVideosForLetter(letter);
 
   return (
-    <main className="min-h-screen">
-      <div className="mx-auto max-w-4xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-12">
+    <main className="flex min-h-screen w-full flex-col">
+      <div className="mx-auto w-full max-w-4xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-12">
         {/* Header */}
         <header className="mb-6 flex flex-col items-center text-center sm:mb-8">
           <Link href="/" className="inline-block transition-opacity hover:opacity-80">

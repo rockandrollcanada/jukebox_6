@@ -4,8 +4,8 @@ import { alphabet } from "@/lib/videos";
 
 export function Footer() {
   return (
-    <footer className="mt-12 bg-card text-card-foreground sm:mt-16">
-      <div className="mx-auto flex max-w-6xl flex-col items-center px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
+    <footer className="mt-auto w-full bg-card text-card-foreground">
+      <div className="mx-auto flex w-full max-w-6xl flex-col items-center px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
         <Image
           src="/images/footer.png"
           alt="Rock and Roll Canada Jukebox"

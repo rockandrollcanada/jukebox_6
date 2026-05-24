@@ -8,8 +8,8 @@ const videos = videosByLetter.a;
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
-      <div className="mx-auto max-w-4xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-12">
+    <main className="flex min-h-screen w-full flex-col">
+      <div className="mx-auto w-full max-w-4xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-12">
         {/* Header */}
         <header className="mb-6 flex flex-col items-center text-center sm:mb-8 lg:mb-10">
           <h1 className="mb-3 text-2xl font-bold text-primary sm:mb-4 sm:text-3xl lg:text-4xl">
