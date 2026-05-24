@@ -2,6 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getVideosForLetter, alphabet } from "@/lib/videos";
+import { Footer } from "@/components/footer";
+import { VideoEmbed } from "@/components/video-embed";
+import { LetterNav } from "@/components/letter-nav";
 
 export function generateStaticParams() {
   return alphabet.map((letter) => ({
@@ -21,44 +24,6 @@ export async function generateMetadata({
   };
 }
 
-function Footer() {
-  return (
-    <footer className="mt-12 bg-red-800 text-white">
-      <div className="mx-auto max-w-6xl px-4 py-8">
-        <Image
-          src="/images/footer.png"
-          alt="Rock and Roll Canada Jukebox"
-          width={800}
-          height={100}
-          className="mb-8 w-full"
-        />
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-6">
-          {alphabet.map((l) => (
-            <Link
-              key={l}
-              href={`/jukebox/${l.toLowerCase()}`}
-              className="text-white hover:text-red-300"
-            >
-              Jukebox {l}
-            </Link>
-          ))}
-        </div>
-        <div className="mt-8 border-t border-red-700 pt-4 text-center">
-          Made by{" "}
-          <a
-            href="http://glensmith.ca"
-            className="text-red-300 hover:text-white"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Glen Smith
-          </a>
-        </div>
-      </div>
-    </footer>
-  );
-}
-
 export default async function JukeboxPage({
   params,
 }: {
@@ -74,73 +39,56 @@ export default async function JukeboxPage({
   const videos = getVideosForLetter(letter);
 
   return (
-    <main>
-      <div className="mx-auto max-w-4xl px-4 py-8">
-        <header className="mb-8 text-center">
-          <Link href="/" className="inline-block">
+    <main className="min-h-screen">
+      <div className="mx-auto max-w-4xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-12">
+        {/* Header */}
+        <header className="mb-6 text-center sm:mb-8">
+          <Link href="/" className="inline-block transition-opacity hover:opacity-80">
             <Image
               src="/images/jukeboxlogo.png"
               alt="Rock and Roll Canada Jukebox"
               width={400}
               height={200}
-              className="mx-auto mb-4"
+              className="mx-auto mb-4 w-full max-w-xs sm:max-w-sm"
             />
           </Link>
-          <h1 className="mb-4 text-4xl font-bold text-red-800">
+          <h1 className="mb-2 text-2xl font-bold text-red-800 sm:mb-3 sm:text-3xl lg:text-4xl">
             Jukebox {upperLetter}
           </h1>
-          <p className="text-xl text-gray-600">
+          <p className="text-base text-gray-600 sm:text-lg">
             Canadian rock videos starting with {upperLetter}
           </p>
         </header>
 
-        {/* Letter navigation */}
-        <nav className="mb-8 flex flex-wrap justify-center gap-2">
-          {alphabet.map((l) => (
-            <Link
-              key={l}
-              href={`/jukebox/${l.toLowerCase()}`}
-              className={`rounded px-3 py-1 text-sm font-medium transition-colors ${
-                l === upperLetter
-                  ? "bg-red-800 text-white"
-                  : "bg-gray-200 text-gray-700 hover:bg-red-100"
-              }`}
-            >
-              {l}
-            </Link>
-          ))}
-        </nav>
+        {/* Letter Navigation */}
+        <LetterNav currentLetter={upperLetter} />
 
-        {videos.length === 0 ? (
-          <p className="text-center text-gray-500">
-            No videos available for this letter yet.
-          </p>
-        ) : (
-          <div className="space-y-8">
-            {videos.map((video, index) => (
-              <div key={`${video.id}-${index}`}>
-                <div className="aspect-video w-full">
-                  <iframe
-                    title={video.title}
-                    src={`https://www.youtube.com/embed/${video.id}`}
-                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="h-full w-full rounded-lg"
-                  />
-                </div>
-                {(index + 1) % 4 === 0 && index < videos.length - 1 && (
-                  <Image
-                    src="/images/jukebox-part.png"
-                    alt="Rock and Roll Canada Jukebox divider"
-                    width={800}
-                    height={50}
-                    className="mx-auto my-8 w-full"
-                  />
-                )}
-              </div>
-            ))}
-          </div>
-        )}
+        {/* Videos Section */}
+        <section aria-label={`Videos starting with ${upperLetter}`}>
+          {videos.length === 0 ? (
+            <div className="py-12 text-center sm:py-16">
+              <p className="text-lg text-gray-500 sm:text-xl">
+                No videos available for this letter yet.
+              </p>
+              <Link
+                href="/"
+                className="mt-4 inline-block text-red-800 hover:text-red-600"
+              >
+                Back to home
+              </Link>
+            </div>
+          ) : (
+            <div className="grid gap-4 sm:gap-6 md:grid-cols-2 lg:gap-8">
+              {videos.map((video, index) => (
+                <VideoEmbed
+                  key={`${video.id}-${index}`}
+                  title={video.title}
+                  videoId={video.id}
+                />
+              ))}
+            </div>
+          )}
+        </section>
       </div>
 
       <Footer />
