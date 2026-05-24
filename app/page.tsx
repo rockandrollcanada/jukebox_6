@@ -8,14 +8,14 @@ const videos = videosByLetter.a;
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen w-full flex-col">
-      <div className="mx-auto w-full max-w-4xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-12">
+    <main style={{ width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
+      <div style={{ width: "100%", maxWidth: "56rem", padding: "1.5rem 1rem" }}>
         {/* Header */}
-        <header className="mb-6 flex flex-col items-center text-center sm:mb-8 lg:mb-10">
-          <h1 className="mb-3 text-2xl font-bold text-primary sm:mb-4 sm:text-3xl lg:text-4xl">
+        <header style={{ marginBottom: "2rem", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
+          <h1 style={{ marginBottom: "1rem", fontSize: "1.875rem", fontWeight: "bold", color: "#dc2626" }}>
             Rock and Roll Canada Video Juke Box
           </h1>
-          <p className="mb-4 text-base text-muted-foreground sm:mb-6 sm:text-lg lg:text-xl">
+          <p style={{ marginBottom: "1.5rem", fontSize: "1.125rem", color: "#a3a3a3" }}>
             Watch Canadian Rock Bands play Ontario
           </p>
           <Image
@@ -23,7 +23,7 @@ export default function Home() {
             alt="Rock and Roll Canada Jukebox Version two."
             width={600}
             height={300}
-            className="mx-auto w-full max-w-md sm:max-w-lg lg:max-w-xl"
+            style={{ width: "100%", maxWidth: "32rem", height: "auto" }}
             priority
           />
         </header>
@@ -33,7 +33,12 @@ export default function Home() {
 
         {/* Video Grid */}
         <section aria-label="Featured videos">
-          <div className="grid gap-4 sm:gap-6 md:grid-cols-2 lg:gap-8">
+          <div style={{ 
+            display: "grid", 
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", 
+            gap: "1.5rem",
+            justifyItems: "center"
+          }}>
             {videos.map((video, index) => (
               <VideoEmbed
                 key={`${video.id}-${index}`}

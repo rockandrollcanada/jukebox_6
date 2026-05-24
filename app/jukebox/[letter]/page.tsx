@@ -39,23 +39,23 @@ export default async function JukeboxPage({
   const videos = getVideosForLetter(letter);
 
   return (
-    <main className="flex min-h-screen w-full flex-col">
-      <div className="mx-auto w-full max-w-4xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-12">
+    <main style={{ width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
+      <div style={{ width: "100%", maxWidth: "56rem", padding: "1.5rem 1rem" }}>
         {/* Header */}
-        <header className="mb-6 flex flex-col items-center text-center sm:mb-8">
-          <Link href="/" className="inline-block transition-opacity hover:opacity-80">
+        <header style={{ marginBottom: "2rem", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
+          <Link href="/" style={{ display: "inline-block", opacity: 1, transition: "opacity 0.2s" }}>
             <Image
               src="/images/jukeboxlogo.png"
               alt="Rock and Roll Canada Jukebox"
               width={400}
               height={200}
-              className="mx-auto mb-4 w-full max-w-xs sm:max-w-sm"
+              style={{ width: "100%", maxWidth: "20rem", height: "auto", marginBottom: "1rem" }}
             />
           </Link>
-          <h1 className="mb-2 text-2xl font-bold text-primary sm:mb-3 sm:text-3xl lg:text-4xl">
+          <h1 style={{ marginBottom: "0.75rem", fontSize: "1.875rem", fontWeight: "bold", color: "#dc2626" }}>
             Jukebox {upperLetter}
           </h1>
-          <p className="text-base text-muted-foreground sm:text-lg">
+          <p style={{ fontSize: "1.125rem", color: "#a3a3a3" }}>
             Canadian rock videos starting with {upperLetter}
           </p>
         </header>
@@ -66,19 +66,24 @@ export default async function JukeboxPage({
         {/* Videos Section */}
         <section aria-label={`Videos starting with ${upperLetter}`}>
           {videos.length === 0 ? (
-            <div className="py-12 text-center sm:py-16">
-              <p className="text-lg text-muted-foreground sm:text-xl">
+            <div style={{ padding: "3rem 0", textAlign: "center" }}>
+              <p style={{ fontSize: "1.25rem", color: "#a3a3a3" }}>
                 No videos available for this letter yet.
               </p>
               <Link
                 href="/"
-                className="mt-4 inline-block text-primary hover:text-primary/80"
+                style={{ marginTop: "1rem", display: "inline-block", color: "#dc2626" }}
               >
                 Back to home
               </Link>
             </div>
           ) : (
-            <div className="grid gap-4 sm:gap-6 md:grid-cols-2 lg:gap-8">
+            <div style={{ 
+              display: "grid", 
+              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", 
+              gap: "1.5rem",
+              justifyItems: "center"
+            }}>
               {videos.map((video, index) => (
                 <VideoEmbed
                   key={`${video.id}-${index}`}

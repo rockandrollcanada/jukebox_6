@@ -4,24 +4,37 @@ import { alphabet } from "@/lib/videos";
 
 export function Footer() {
   return (
-    <footer className="mt-auto w-full bg-card text-card-foreground">
-      <div className="mx-auto flex w-full max-w-6xl flex-col items-center px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
+    <footer style={{ marginTop: "auto", width: "100%", backgroundColor: "#1e242c", color: "#f0f0f0" }}>
+      <div style={{ margin: "0 auto", maxWidth: "72rem", padding: "1.5rem 1rem", display: "flex", flexDirection: "column", alignItems: "center" }}>
         <Image
           src="/images/footer.png"
           alt="Rock and Roll Canada Jukebox"
           width={800}
           height={100}
-          className="mb-6 w-full sm:mb-8"
+          style={{ width: "100%", maxWidth: "50rem", marginBottom: "1.5rem" }}
         />
         
-        {/* Letter navigation grid - responsive columns */}
-        <nav aria-label="Jukebox letter navigation" className="w-full">
-          <div className="flex flex-wrap justify-center gap-2 text-center sm:gap-3">
+        {/* Letter navigation */}
+        <nav aria-label="Jukebox letter navigation" style={{ width: "100%" }}>
+          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "0.5rem" }}>
             {alphabet.map((letter) => (
               <Link
                 key={letter}
                 href={`/jukebox/${letter.toLowerCase()}`}
-                className="flex h-8 w-8 items-center justify-center rounded-md text-sm font-medium text-foreground transition-colors hover:bg-accent hover:text-primary hover:no-underline sm:h-10 sm:w-10 sm:text-base"
+                style={{ 
+                  display: "flex", 
+                  alignItems: "center", 
+                  justifyContent: "center", 
+                  width: "2.25rem", 
+                  height: "2.25rem", 
+                  borderRadius: "0.375rem",
+                  fontSize: "0.875rem",
+                  fontWeight: "500",
+                  color: "#f0f0f0",
+                  backgroundColor: "#252d38",
+                  textDecoration: "none",
+                  transition: "background-color 0.2s"
+                }}
               >
                 {letter}
               </Link>
@@ -29,11 +42,11 @@ export function Footer() {
           </div>
         </nav>
         
-        <div className="mt-6 w-full border-t border-border pt-4 text-center text-sm sm:mt-8 sm:text-base">
+        <div style={{ marginTop: "1.5rem", paddingTop: "1rem", width: "100%", borderTop: "1px solid #374151", textAlign: "center", fontSize: "0.875rem" }}>
           Made by{" "}
           <a
             href="http://glensmith.ca"
-            className="font-medium text-primary transition-colors hover:text-primary/80"
+            style={{ fontWeight: "500", color: "#dc2626", textDecoration: "none" }}
             target="_blank"
             rel="noopener noreferrer"
           >
