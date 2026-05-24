@@ -42,7 +42,6 @@ export default function Home() {
             {videos.map((video, index) => (
               <VideoEmbed
                 key={`${video.id}-${index}`}
-                title={video.title}
                 videoId={video.id}
               />
             ))}

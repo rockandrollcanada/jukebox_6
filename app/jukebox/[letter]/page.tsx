@@ -87,7 +87,6 @@ export default async function JukeboxPage({
               {videos.map((video, index) => (
                 <VideoEmbed
                   key={`${video.id}-${index}`}
-                  title={video.title}
                   videoId={video.id}
                 />
               ))}
