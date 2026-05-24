@@ -22,18 +22,7 @@ export function VideoEmbed({ title, videoId }: VideoEmbedProps) {
           style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: 0 }}
         />
       </div>
-      <div style={{ backgroundColor: "#252d38", padding: "0.75rem 1rem" }}>
-        <p style={{ 
-          margin: 0, 
-          textAlign: "center", 
-          fontSize: "0.875rem", 
-          fontWeight: "500", 
-          color: "#f0f0f0",
-          overflow: "hidden",
-          textOverflow: "ellipsis",
-          whiteSpace: "nowrap"
-        }}>{title}</p>
-      </div>
+
     </div>
   );
 }
