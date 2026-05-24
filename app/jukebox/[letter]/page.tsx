@@ -42,7 +42,7 @@ export default async function JukeboxPage({
     <main className="min-h-screen">
       <div className="mx-auto max-w-4xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-12">
         {/* Header */}
-        <header className="mb-6 text-center sm:mb-8">
+        <header className="mb-6 flex flex-col items-center text-center sm:mb-8">
           <Link href="/" className="inline-block transition-opacity hover:opacity-80">
             <Image
               src="/images/jukeboxlogo.png"
@@ -52,10 +52,10 @@ export default async function JukeboxPage({
               className="mx-auto mb-4 w-full max-w-xs sm:max-w-sm"
             />
           </Link>
-          <h1 className="mb-2 text-2xl font-bold text-red-800 sm:mb-3 sm:text-3xl lg:text-4xl">
+          <h1 className="mb-2 text-2xl font-bold text-primary sm:mb-3 sm:text-3xl lg:text-4xl">
             Jukebox {upperLetter}
           </h1>
-          <p className="text-base text-gray-600 sm:text-lg">
+          <p className="text-base text-muted-foreground sm:text-lg">
             Canadian rock videos starting with {upperLetter}
           </p>
         </header>
@@ -67,12 +67,12 @@ export default async function JukeboxPage({
         <section aria-label={`Videos starting with ${upperLetter}`}>
           {videos.length === 0 ? (
             <div className="py-12 text-center sm:py-16">
-              <p className="text-lg text-gray-500 sm:text-xl">
+              <p className="text-lg text-muted-foreground sm:text-xl">
                 No videos available for this letter yet.
               </p>
               <Link
                 href="/"
-                className="mt-4 inline-block text-red-800 hover:text-red-600"
+                className="mt-4 inline-block text-primary hover:text-primary/80"
               >
                 Back to home
               </Link>

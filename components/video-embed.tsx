@@ -5,7 +5,7 @@ interface VideoEmbedProps {
 
 export function VideoEmbed({ title, videoId }: VideoEmbedProps) {
   return (
-    <div className="overflow-hidden rounded-lg bg-black shadow-lg">
+    <div className="mx-auto w-full max-w-lg overflow-hidden rounded-lg bg-card shadow-lg">
       <div className="aspect-video w-full">
         <iframe
           title={title}
@@ -15,8 +15,8 @@ export function VideoEmbed({ title, videoId }: VideoEmbedProps) {
           className="h-full w-full"
         />
       </div>
-      <div className="bg-gray-900 px-3 py-2 sm:px-4 sm:py-3">
-        <p className="truncate text-sm font-medium text-white sm:text-base">{title}</p>
+      <div className="bg-secondary px-3 py-2 sm:px-4 sm:py-3">
+        <p className="truncate text-center text-sm font-medium text-card-foreground sm:text-base">{title}</p>
       </div>
     </div>
   );

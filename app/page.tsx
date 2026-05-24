@@ -11,11 +11,11 @@ export default function Home() {
     <main className="min-h-screen">
       <div className="mx-auto max-w-4xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-12">
         {/* Header */}
-        <header className="mb-6 text-center sm:mb-8 lg:mb-10">
-          <h1 className="mb-3 text-2xl font-bold text-red-800 sm:mb-4 sm:text-3xl lg:text-4xl">
+        <header className="mb-6 flex flex-col items-center text-center sm:mb-8 lg:mb-10">
+          <h1 className="mb-3 text-2xl font-bold text-primary sm:mb-4 sm:text-3xl lg:text-4xl">
             Rock and Roll Canada Video Juke Box
           </h1>
-          <p className="mb-4 text-base text-gray-600 sm:mb-6 sm:text-lg lg:text-xl">
+          <p className="mb-4 text-base text-muted-foreground sm:mb-6 sm:text-lg lg:text-xl">
             Watch Canadian Rock Bands play Ontario
           </p>
           <Image
