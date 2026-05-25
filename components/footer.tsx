@@ -21,20 +21,7 @@ export function Footer() {
               <Link
                 key={letter}
                 href={`/jukebox/${letter.toLowerCase()}`}
-                style={{ 
-                  display: "flex", 
-                  alignItems: "center", 
-                  justifyContent: "center", 
-                  width: "2.25rem", 
-                  height: "2.25rem", 
-                  borderRadius: "0.375rem",
-                  fontSize: "0.875rem",
-                  fontWeight: "500",
-                  color: "#f0f0f0",
-                  backgroundColor: "#252d38",
-                  textDecoration: "none",
-                  transition: "background-color 0.2s"
-                }}
+                className="letter-link"
               >
                 {letter}
               </Link>
